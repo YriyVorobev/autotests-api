@@ -17,9 +17,9 @@ headers = {
     "Authorization" : f"Bearer {access_token}"
 }
 
-accessToken_response = httpx.get("http://localhost:8000/api/v1/users/me", headers=headers)
-accessToken_response_data = accessToken_response.json()
+access_Token_response = httpx.get("http://localhost:8000/api/v1/users/me", headers=headers)
+access_Token_response_data = access_Token_response.json()
 
 
-print('user:',accessToken_response_data)
-print('status response:', accessToken_response.status_code)
+print('user:',access_Token_response_data)
+print('status response:', access_Token_response.status_code)
