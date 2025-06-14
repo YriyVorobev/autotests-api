@@ -43,7 +43,10 @@ path_payload = {
   "middleName": "string"
 }
 path_user_response = httpx.patch(f"http://127.0.0.1:8000/api/v1/users/{create_user_payload_data['user']['id']}",
-                     headers= path_user_header,json=path_payload)
+                     headers= path_user_header,
+                     json=path_payload)
+
 path_user_response_data = path_user_response.json()
+
 print("response update:", path_user_response_data)
 print("response code:", path_user_response.status_code)
