@@ -24,7 +24,7 @@ class GetExercisesResponseDict(TypedDict):
     """
     Структура ответа на получение списка упражнений.
     """
-    exercises: list[Exercise]
+    exercises: Exercise
 
 class GetExercisesQueryDict(TypedDict):
     """
