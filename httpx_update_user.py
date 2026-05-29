@@ -2,12 +2,12 @@
 
 import httpx
 
-from tools.fakers import get_random_email
+from tools.fakers import fake
 
 # Создаем пользователя
 
 create_user_payload = {
-  "email": get_random_email(),
+  "email": fake.email(),
   "password": "string",
   "lastName": "string",
   "firstName": "string",
@@ -37,7 +37,7 @@ path_user_header = {
   "Authorization": f"Bearer {login_response_user_data['token']['accessToken']}"
 }
 path_payload = {
-  "email": get_random_email(),
+  "email": fake.email(),
   "lastName": "string",
   "firstName": "string",
   "middleName": "string"
