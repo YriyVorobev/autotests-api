@@ -6,18 +6,21 @@ from clients.users.users_schema import CreateUserRequestSchema
 from tools.assertions.authentication import assert_login_response
 from tools.assertions.base import assert_status_code
 from tools.assertions.schema import validate_json_schema
-from tools.fakers import fake
+import pytest
 
 
 
 
+@pytest.mark.authentication
+@pytest.mark.regression
 def test_login():
+
     public_users_client = get_public_users_client()
     authentication_client = get_authentication_client()
 
     request = CreateUserRequestSchema()
-
     public_users_client.create_user_api(request)
+
     login_response = authentication_client.login_api(request)
     login_response_data = LoginResponseSchema.model_validate_json(login_response.text)
 
