@@ -8,13 +8,15 @@ from fixtures.users import UserFixture
 from tools.assertions.base import assert_status_code
 from tools.assertions.schema import validate_json_schema
 from tools.assertions.users import assert_get_user_response
+from tools.fakers import fake
 import pytest
 
 @pytest.mark.users
 @pytest.mark.regression
-def test_create_user(public_user_client: PublicUsersClient):
+@pytest.mark.parametrize("domain",["mail.ru", "gmail.com", "example.com"])
+def test_create_user(domain: str, public_user_client: PublicUsersClient):
 
-    request = CreateUserRequestSchema()
+    request = CreateUserRequestSchema(email=fake.email(domain=domain))
     response = public_user_client.create_user_api(request)
     response_data = CreateUserResponseSchema.model_validate_json(response.text)
 
