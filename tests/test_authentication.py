@@ -1,6 +1,5 @@
 from http import HTTPStatus
-from clients.users.public_users_client import get_public_users_client
-from clients.authentication.authentication_client import get_authentication_client, AuthenticationClient
+from clients.authentication.authentication_client import AuthenticationClient
 from clients.authentication.authentication_schema import LoginResponseSchema
 from clients.users.users_schema import CreateUserRequestSchema
 from tools.assertions.authentication import assert_login_response

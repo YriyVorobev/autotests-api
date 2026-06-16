@@ -50,7 +50,7 @@ class UpdateUserResponseSchema(BaseModel):
     user: UserSchema
 
 
-class GetUsersResponseSchema(BaseModel):
+class GetUserResponseSchema(BaseModel):
     """
     Описание структуры ответа получения пользователя.
     """
