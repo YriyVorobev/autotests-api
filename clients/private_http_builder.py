@@ -1,17 +1,16 @@
-from typing import TypedDict
-
+from functools import lru_cache
 from httpx import Client
-
 from clients.authentication.authentication_client import get_authentication_client, LoginRequestSchema
 from pydantic import BaseModel, EmailStr
 
 
-class AuthenticationUserSchema(BaseModel):  # Структура данных пользователя для авторизации
+class AuthenticationUserSchema(BaseModel, frozen=True):  # Структура данных пользователя для авторизации
     email: EmailStr
     password: str
 
 
 # Создаем private builder
+@lru_cache(maxsize=None)
 def get_private_http_client(user: AuthenticationUserSchema) -> Client:
     """
     Функция создаёт экземпляр httpx. Client с аутентификацией пользователя.

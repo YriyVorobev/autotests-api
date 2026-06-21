@@ -1,7 +1,7 @@
 from clients.courses.courses_clients import get_courses_client
 from clients.exercises.exercises_client import get_exercises_client
 from clients.files.filesClient import get_files_client
-from clients.private_http_builder import AuthenticationUserDict
+from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema
 from clients.files.files_schema import CreateFileRequestSchema
@@ -15,7 +15,7 @@ create_user_request = CreateUserRequestSchema()
 
 create_user_response = public_users_client.create_user(create_user_request)
 
-authentication_user = AuthenticationUserDict(
+authentication_user = AuthenticationUserSchema(
     email=create_user_request.email,
     password=create_user_request.password
 )
