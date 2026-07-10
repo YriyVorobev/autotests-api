@@ -6,7 +6,6 @@ from fixtures.users import UserFixture
 import pytest
 
 
-
 class ExerciseFixture(BaseModel):
     request: CreateExerciseRequestSchema
     response: CreateExerciseResponseSchema
