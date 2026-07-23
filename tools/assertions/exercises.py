@@ -2,10 +2,12 @@ from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
     ExerciseSchema,
-    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema
+    GetExerciseResponseSchema,
+    UpdateExerciseRequestSchema,
+    UpdateExerciseResponseSchema,
+    GetExercisesResponseSchema
 )
-from tools.assertions.base import assert_equal
-
+from tools.assertions.base import assert_equal, assert_length
 
 
 def assert_create_exercise_response(
@@ -75,3 +77,20 @@ def assert_update_exercise_response(
     assert_equal(response.exercise.order_index, request.order_index, "order_index")
     assert_equal(response.exercise.description, request.description, "description")
     assert_equal(response.exercise.estimated_time, request.estimated_time, "estimated_time")
+
+def assert_get_exercises_response(
+        get_exercises_response: GetExercisesResponseSchema,
+        create_exercises_response: list[CreateExerciseResponseSchema]
+):
+    """
+    Проверяет, что ответ на получение списка курсов соответствует ответам на их создание.
+
+    :param get_exercises_response: Ответ API при запросе списка упражнений.
+    :param create_exercises_response: Список API ответов при создании упражнений.
+    :raises AssertionError: Если данные упражнений не совпадают.
+    """
+    assert_length(get_exercises_response.exercises, create_exercises_response, "exercise")
+
+    for index, create_exercises_response in enumerate(create_exercises_response):
+        assert_exercise(get_exercises_response.exercises[index], create_exercises_response.exercise)
+
