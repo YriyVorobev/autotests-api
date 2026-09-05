@@ -16,3 +16,6 @@ allure-results/
 allure-report/
 .gitignore
 .env
+
+local.db
+storage/
